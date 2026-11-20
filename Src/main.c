@@ -19,8 +19,20 @@
 #include <stdint.h>
 #include "stm32f446xx.h"
 
+#define DELAY_LOOPS 400000UL
+
 int main(void)
 {
-    /* Loop forever */
-	for(;;);
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+
+    GPIOA->MODER &= ~GPIO_MODER_MODE5; /* clear both bits of the filed */
+    GPIOA->MODER |= GPIO_MODER_MODE5_0; /* set the low bit: 01 = output */
+
+	for(;;){
+        GPIOA->ODR ^= GPIO_ODR_OD5;
+
+        for(volatile uint32_t i=0; i < DELAY_LOOPS; i++){
+
+        }
+    }
 }
