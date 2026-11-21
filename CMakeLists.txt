@@ -32,6 +32,7 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/files.cmake)
 target_sources(${PROJECT_NAME} PRIVATE
   # User defined sources
   Src/gpio.c
+  Src/systick.c
 )
 
 # Add include directories
