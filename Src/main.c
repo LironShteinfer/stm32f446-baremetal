@@ -1,8 +1,9 @@
 /*
- * main.c - Light Station.
+ * main.c - TIM2 interrupt blink demo.
  *
- * LD2 follows the blue button B1. The red LED on PA6 shows the
- * external button on PA7, which uses the internal pull-up.
+ * LD2 (PA5) toggles every BLINK_SLOW_MS milliseconds. The toggle runs in the
+ * TIM2 update interrupt callback, so the main loop stays empty and the timing
+ * comes from the timer hardware, not from a busy-wait delay.
  */
 
 #include "board.h"

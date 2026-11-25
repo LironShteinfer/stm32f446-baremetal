@@ -2,7 +2,7 @@
 
 #define MODER_BITS_PER_PIN 2U
 #define FIELD_MASK_2BITS 3UL
-#define AFR_PINS_PRE_REG 8U
+#define AFR_PINS_PER_REG 8U
 #define AFR_BITS_PER_PIN 4U
 #define FIELD_MASK_4BIT 0xFUL
 
@@ -37,8 +37,8 @@ void gpio_set_open_drain(GPIO_TypeDef *port, uint8_t pin, bool open_drain)
 
 void gpio_set_af(GPIO_TypeDef *port, uint8_t pin, uint32_t af)
 {
-    uint32_t index = pin / AFR_PINS_PRE_REG;
-    uint32_t shift = (pin % AFR_PINS_PRE_REG) * AFR_BITS_PER_PIN;
+    uint32_t index = pin / AFR_PINS_PER_REG;
+    uint32_t shift = (pin % AFR_PINS_PER_REG) * AFR_BITS_PER_PIN;
     port->AFR[index] &= ~(FIELD_MASK_4BIT << shift);
     port->AFR[index] |= ((uint32_t)af << shift);
 }
